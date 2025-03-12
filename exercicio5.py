@@ -1,3 +1,4 @@
+
 def registrar_notas():
     notas = []
     while True:
@@ -21,6 +22,3 @@ def registrar_notas():
         print("\nNenhuma nota válida foi registrada.")
 
 registrar_notas()
-
-
-
