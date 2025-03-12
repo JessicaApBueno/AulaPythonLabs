@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #Crie um programa para verificar a maioridade
 
 # Solicita a idade do usuário
@@ -22,5 +22,5 @@ if idade >= 18:
 elif idade >= 12:
     print("Você é um Adolescente")
 else:
->>>>>>> 7642d2266fcf24acfdbc732e3d64854518ea53f9
+
     print("Você é menor de idade.")
