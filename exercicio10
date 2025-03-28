@@ -1,0 +1,48 @@
+import requests
+
+def get_currency_quote(currency):
+    """
+    Gets the current quote of a currency (USD or EUR) against the Brazilian Real (BRL).
+
+    Args:
+        currency: The currency code (USD or EUR).
+
+    Returns:
+        The current quote as a float, or None if an error occurs.
+    """
+    try:
+        url = f"https://economia.awesomeapi.com.br/last/{currency}-BRL"
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+
+        data = response.json()
+        quote = float(data[f"{currency}BRL"]["bid"])
+        return quote
+    except requests.exceptions.RequestException as e:
+        print(f"Error during request: {e}")
+        return None
+    except (KeyError, ValueError) as e:
+        print(f"Error processing data: {e}")
+        return None
+
+def main():
+    """
+    Main function to interact with the user and display currency quotes.
+    """
+    while True:
+        currency_input = input("Enter the currency code (USD, EUR, or 'exit' to quit): ").upper()
+
+        if currency_input == "EXIT":
+            break
+
+        if currency_input not in ["USD", "EUR"]:
+            print("Invalid currency code. Please enter USD or EUR.")
+            continue
+
+        quote = get_currency_quote(currency_input)
+
+        if quote:
+            print(f"Current {currency_input} to BRL quote: {quote:.4f}")
+
+if __name__ == "__main__":
+    main()
